@@ -2,8 +2,11 @@
 set -e
 
 # To use a newer neo-cli version, just update this variable:
-NEO_CLI_VERSION="2.10.1"
-NEO_PLUGINS_VERSION="2.10.1"
+NEO_CLI_VERSION="2.10.2"
+NEO_PLUGINS_VERSION="2.10.2"
+
+DOCKER_ORG=axlabs
+IMAGE_NAME=neo-privatenet
 
 function usage {
     echo "Usage: $0 [--no-cache] [--neo-cli <zip-fn>]"
@@ -63,8 +66,8 @@ else
 fi
 
 if [ -z "$DISABLE_CACHE" ]; then
-  docker build -t neo-privnet .
+  docker build -t $DOCKER_ORG/$IMAGE_NAME .
 else
   echo "docker build no cache"
-  docker build --no-cache -t neo-privnet .
+  docker build --no-cache -t $DOCKER_ORG/$IMAGE_NAME .
 fi
