@@ -3,6 +3,10 @@
 # Start a Docker container which runs the four consensus nodes. If it is
 # already running, it will be destroyed first.
 #
+
+DOCKER_ORG="axlabs"
+DOCKER_IMAGE_NAME="neo-privatenet"
+
 CONTAINER_NAME="neo-privnet"
 CONTAINER=$(docker ps -aqf name=$CONTAINER_NAME)
 
@@ -14,4 +18,4 @@ if [ -n "$CONTAINER" ]; then
 fi
 
 echo "Starting container..."
-docker run -d --name $CONTAINER_NAME -p 20333-20336:20333-20336/tcp -p 30333-30336:30333-30336/tcp -h $CONTAINER_NAME $CONTAINER_NAME
+docker run -d --name $CONTAINER_NAME -p 20333-20336:20333-20336/tcp -p 30333-30336:30333-30336/tcp -h $CONTAINER_NAME $DOCKER_ORG/$DOCKER_IMAGE_NAME

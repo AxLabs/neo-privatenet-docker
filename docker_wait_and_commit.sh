@@ -4,6 +4,9 @@
 #
 SLEEP_TIME=30
 
+DOCKER_ORG=axlabs
+DOCKER_IMAGE_NAME=neo-privatenet
+
 function usage {
     echo "Usage: $0 [--2k|--10k|--20k|--until-block <block-number-regex>]"
     echo "Default: 2k"
@@ -69,9 +72,9 @@ echo
 #DOCKER_CMD="docker exec -it neo-privnet screen -wipe"
 
 echo "Committing docker image as neo-privatenet:latest"
-docker commit neo-privnet neo-privatenet:latest
+docker commit neo-privnet $DOCKER_ORG/$DOCKER_IMAGE_NAME:latest
 
 echo "Next steps:"
-echo "- docker tag neo-privatenet:latest cityofzion/neo-privatenet:latest"
-echo "- docker tag neo-privatenet:latest cityofzion/neo-privatenet:<version>"
-echo "- docker push cityofzion/neo-privatenet:latest cityofzion/neo-privatenet:<version>"
+echo "- docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_ORG/$DOCKER_IMAGE_NAME:latest"
+echo "- docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_ORG/$DOCKER_IMAGE_NAME:<version>"
+echo "- docker push $DOCKER_ORG/$DOCKER_IMAGE_NAME:latest $DOCKER_ORG/$DOCKER_IMAGE_NAME:<version>"

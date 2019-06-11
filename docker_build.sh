@@ -6,7 +6,7 @@ NEO_CLI_VERSION="2.10.2"
 NEO_PLUGINS_VERSION="2.10.2"
 
 DOCKER_ORG=axlabs
-IMAGE_NAME=neo-privatenet
+DOCKER_IMAGE_NAME=neo-privatenet
 
 function usage {
     echo "Usage: $0 [--no-cache] [--neo-cli <zip-fn>]"
@@ -46,6 +46,8 @@ NEO_PLUGIN_ZIPFN="SimplePolicy.zip"
 NEO_PLUGIN_URL="https://github.com/neo-project/neo-plugins/releases/download/v${NEO_PLUGINS_VERSION}/SimplePolicy.zip"
 NEO_APPLOG_ZIPFN="ApplicationLogs.zip"
 NEO_APPLOG_URL="https://github.com/neo-project/neo-plugins/releases/download/v${NEO_PLUGINS_VERSION}/ApplicationLogs.zip"
+NEO_RPCSYSASSETTRACKER_ZIPFN="RpcSystemAssetTracker.zip"
+NEO_RPCSYSASSETTRACKER_URL="https://github.com/neo-project/neo-plugins/releases/download/v${NEO_PLUGINS_VERSION}/RpcSystemAssetTracker.zip"
 
 if [ -z "$NEO_CLI_CUSTOM_ZIPFN" ]; then
     echo "Using downloaded neo-cli v${NEO_CLI_VERSION}"
@@ -58,6 +60,7 @@ if [ -z "$NEO_CLI_CUSTOM_ZIPFN" ]; then
         curl -L --output $NEO_CLI_ZIPFN $NEO_CLI_URL || (rm -f $NEO_CLI_ZIPFN && exit 1)
         curl -L --output $NEO_PLUGIN_ZIPFN $NEO_PLUGIN_URL || (rm -f $NEO_PLUGIN_ZIPFN && exit 1)
         curl -L --output $NEO_APPLOG_ZIPFN $NEO_APPLOG_URL || (rm -f $NEO_APPLOG_ZIPFN && exit 1)
+	curl -L --output $NEO_RPCSYSASSETTRACKER_ZIPFN $NEO_RPCSYSASSETTRACKER_URL || (rm -f $NEO_RPCSYSASSETTRACKER_ZIPFN && exit 1)
     fi
     cp $NEO_CLI_ZIPFN ./neo-cli.zip
 else
@@ -66,8 +69,8 @@ else
 fi
 
 if [ -z "$DISABLE_CACHE" ]; then
-  docker build -t $DOCKER_ORG/$IMAGE_NAME .
+  docker build -t $DOCKER_ORG/$DOCKER_IMAGE_NAME .
 else
   echo "docker build no cache"
-  docker build --no-cache -t $DOCKER_ORG/$IMAGE_NAME .
+  docker build --no-cache -t $DOCKER_ORG/$DOCKER_IMAGE_NAME .
 fi
