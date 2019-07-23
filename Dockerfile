@@ -49,6 +49,7 @@ ADD ./neo-cli.zip /opt/neo-cli.zip
 ADD ./SimplePolicy.zip /opt/SimplePolicy.zip
 ADD ./ApplicationLogs.zip /opt/ApplicationLogs.zip
 ADD ./RpcSystemAssetTracker.zip /opt/RpcSystemAssetTracker.zip
+ADD ./RpcWallet.zip /opt/RpcWallet.zip
 
 # Extract and prepare four consensus nodes
 RUN unzip -q -d /opt/node1 /opt/neo-cli.zip
@@ -74,11 +75,18 @@ RUN unzip -q -d /opt/node2/neo-cli /opt/RpcSystemAssetTracker.zip
 RUN unzip -q -d /opt/node3/neo-cli /opt/RpcSystemAssetTracker.zip
 RUN unzip -q -d /opt/node4/neo-cli /opt/RpcSystemAssetTracker.zip
 
+# Extract and prepare RpcWallet plugin
+RUN unzip -q -d /opt/node1/neo-cli /opt/RpcWallet.zip
+RUN unzip -q -d /opt/node2/neo-cli /opt/RpcWallet.zip
+RUN unzip -q -d /opt/node3/neo-cli /opt/RpcWallet.zip
+RUN unzip -q -d /opt/node4/neo-cli /opt/RpcWallet.zip
+
 # Remove zip neo-cli package
 RUN rm /opt/neo-cli.zip
 RUN rm /opt/SimplePolicy.zip
 RUN rm /opt/ApplicationLogs.zip
 RUN rm /opt/RpcSystemAssetTracker.zip
+RUN rm /opt/RpcWallet.zip
 
 # Create chain data directories
 RUN mkdir -p /opt/chaindata/node1

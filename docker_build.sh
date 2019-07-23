@@ -48,6 +48,8 @@ NEO_APPLOG_ZIPFN="ApplicationLogs.zip"
 NEO_APPLOG_URL="https://github.com/neo-project/neo-plugins/releases/download/v${NEO_PLUGINS_VERSION}/ApplicationLogs.zip"
 NEO_RPCSYSASSETTRACKER_ZIPFN="RpcSystemAssetTracker.zip"
 NEO_RPCSYSASSETTRACKER_URL="https://github.com/neo-project/neo-plugins/releases/download/v${NEO_PLUGINS_VERSION}/RpcSystemAssetTracker.zip"
+NEO_WALLET_ZIPFN="RpcWallet.zip"
+NEO_WALLET_URL="https://github.com/neo-project/neo-plugins/releases/download/v${NEO_PLUGINS_VERSION}/RpcWallet.zip"
 
 if [ -z "$NEO_CLI_CUSTOM_ZIPFN" ]; then
     echo "Using downloaded neo-cli v${NEO_CLI_VERSION}"
@@ -60,7 +62,8 @@ if [ -z "$NEO_CLI_CUSTOM_ZIPFN" ]; then
         curl -L --output $NEO_CLI_ZIPFN $NEO_CLI_URL || (rm -f $NEO_CLI_ZIPFN && exit 1)
         curl -L --output $NEO_PLUGIN_ZIPFN $NEO_PLUGIN_URL || (rm -f $NEO_PLUGIN_ZIPFN && exit 1)
         curl -L --output $NEO_APPLOG_ZIPFN $NEO_APPLOG_URL || (rm -f $NEO_APPLOG_ZIPFN && exit 1)
-	curl -L --output $NEO_RPCSYSASSETTRACKER_ZIPFN $NEO_RPCSYSASSETTRACKER_URL || (rm -f $NEO_RPCSYSASSETTRACKER_ZIPFN && exit 1)
+        curl -L --output $NEO_RPCSYSASSETTRACKER_ZIPFN $NEO_RPCSYSASSETTRACKER_URL || (rm -f $NEO_RPCSYSASSETTRACKER_ZIPFN && exit 1)
+        curl -L --output $NEO_WALLET_ZIPFN $NEO_WALLET_URL || (rm -f $NEO_WALLET_ZIPFN && exit 1)
     fi
     cp $NEO_CLI_ZIPFN ./neo-cli.zip
 else
